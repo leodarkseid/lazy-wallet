@@ -102,7 +102,7 @@ export default function HomePage() {
 
         const y = await readPath().catch(async () => {
           try {
-            await savePath("$APPCONFIG/com.lazy_wallet.dev/wallets");
+            await savePath("");
           } catch (error: any) {
             throw new Error("my error with", error.toString());
           }
@@ -271,16 +271,21 @@ export default function HomePage() {
 
   async function readFilesInDir() {
     try {
-      setLoadingWallet(true);
-      const data = await readDirectory(`${selectedDir.toString()}/wallets`);
-      await processEntries(data);
+      if (selectedDir.toString() != "") {
+        setLoadingWallet(true);
+        const data = await readDirectory(`${selectedDir.toString()}`);
+        await processEntries(data);
+      } else {
+        throw new Error('No Directory selected')
+      }
     } catch (error: any) {
       toast({
         title: `Read Files`,
         description: error.toString(),
         position: "top-right",
-        duration: 90000,
+        duration: 1000,
         isClosable: true,
+        status: "error",
       });
     } finally {
       setLoadingWallet(false);
@@ -312,7 +317,7 @@ export default function HomePage() {
           mt={3}
           disabled={true}
           cursor="text"
-          placeholder={selectedDir ? selectedDir.toString() : "Default"}
+          placeholder={(selectedDir.toString() != "" && selectedDir.toString() != "/" )? selectedDir.toString() : "Default"}
           _placeholder={{
             display: "flex",
             textAlign: "center",
