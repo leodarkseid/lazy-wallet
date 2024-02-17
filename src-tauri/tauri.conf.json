@@ -48,7 +48,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.lazy_wallet.dev",
+      "identifier": "com.lazy-wallet.dev",
       "longDescription": "",
       "macOS": {
         "entitlements": null,

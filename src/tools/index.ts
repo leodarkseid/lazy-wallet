@@ -4,7 +4,7 @@ export * from "./readDirectory";
 export * from "./readPath";
 export * from "./savePath";
 export * from "./secureFilePath";
-export * from "./writeEncryptedWalletJSON";
+// export * from "./writeEncryptedWalletJSON";
 export * from "./generateRandomName";
 export * from "./toast";
 export * from "./validatePassword"
