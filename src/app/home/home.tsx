@@ -273,10 +273,10 @@ export default function HomePage() {
     try {
       if (selectedDir.toString() != "") {
         setLoadingWallet(true);
-        const data = await readDirectory(`${selectedDir.toString()}`);
+        const data = await readDirectory(`${selectedDir.toString()}/wallets`);
         await processEntries(data);
       } else {
-        throw new Error('No Directory selected')
+        throw new Error("No Directory selected");
       }
     } catch (error: any) {
       toast({
@@ -317,7 +317,11 @@ export default function HomePage() {
           mt={3}
           disabled={true}
           cursor="text"
-          placeholder={(selectedDir.toString() != "" && selectedDir.toString() != "/" )? selectedDir.toString() : "Default"}
+          placeholder={
+            selectedDir.toString() != "" && selectedDir.toString() != "/"
+              ? selectedDir.toString()
+              : "Default"
+          }
           _placeholder={{
             display: "flex",
             textAlign: "center",
